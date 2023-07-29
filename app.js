@@ -37,7 +37,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/userDB",{useNewUrlParser:true, useUn
 const userSchema= new mongoose.Schema ({
     email: String,
     password: String,
-    googleId: String
+    googleId: String,
+    secret: String
 });
 
 //To hash, salt passwords and save users to db
@@ -72,7 +73,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/secrets"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+ 
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
         
       return cb(err, user);
@@ -108,14 +109,37 @@ app.get("/register", function(req,res)
 
 app.get("/secrets", function(req,res)
 {
+  //finding users who have secret field not equal to null i.e they have a secret
+   User.find({"secret":{$ne:null}})
+   .then((foundUser)=>{res.render("secrets", {usersHavingSecrets: foundUser})})
+   .catch((err)=>console.log(err));
+});
+
+app.get("/submit", function(req,res)
+{
     if(req.isAuthenticated())
     {
-        res.render("secrets");
+        res.render("submit");
     }
     else{
         res.redirect("/login");
     }
 });
+
+app.post("/submit", function(req,res)
+{
+  const submittedSecret= req.body.secret;
+
+
+  User.findById(req.user.id)
+  .then((foundUser)=>{
+    foundUser.secret=submittedSecret;
+    foundUser.save()
+    .then(()=>res.redirect("/secrets"));
+  })
+  .catch((err)=>console.log(err));
+});
+
 
 app.get("/logout", function(req,res)
 {
