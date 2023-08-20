@@ -1,4 +1,4 @@
-# Secrets App README
+# Secrets App 
 
 The Secrets App is a web application that allows users to share and discover secrets anonymously. To maintain the privacy of the secrets and ensure a seamless user experience, the app employs Google OAuth for user authentication and authorization. This project serves as a practical implementation of OAuth using the Passport library.
 
