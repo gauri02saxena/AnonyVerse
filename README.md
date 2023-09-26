@@ -1,6 +1,6 @@
 # AnonyVerse: A Secure Secrets Sharing Platform
 
-The Secrets App is a web application that allows users to share and discover secrets anonymously. To maintain the privacy of the secrets and ensure a seamless user experience, the app employs Google OAuth for user authentication and authorization. This project serves as a practical implementation of OAuth using the Passport library.
+The AnonyVerse App is a web application that allows users to share and discover secrets anonymously. To maintain the privacy of the secrets and ensure a seamless user experience, the app employs Google OAuth for user authentication and authorization. This project serves as a practical implementation of OAuth using the Passport library.
 
 ## Features
 
@@ -14,7 +14,7 @@ The Secrets App is a web application that allows users to share and discover sec
 
 ## Technologies Used
 
-The Secrets App utilizes the following technologies and libraries:
+The AnonyVerse App utilizes the following technologies and libraries:
 
 - Node.js
 - Express.js
@@ -45,4 +45,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Thank you for using the Secrets App! Happy secret-sharing!
+Happy secret-sharing!
